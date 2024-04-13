@@ -22,7 +22,7 @@ bool runForked(const std::string& fileName) {
             exit(EXIT_FAILURE);
         }
 
-        execlp(resolved_path, fileName.c_str(), nullptr);
+        execlp(resolved_path, ("./" + fileName).c_str(), nullptr);
 
         // If execlp returns, an error occurred
         perror("execlp");
