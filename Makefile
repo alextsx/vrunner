@@ -1,6 +1,6 @@
-CC = g++8
-CFLAGS += -w -O2 -g -std=c++11 -pipe -Wl,-rpath=/usr/local/lib/gcc8
-BINDIR = ..
+CC = g++12
+CFLAGS += -w -O2 -g -std=c++20 -pipe -Wl,-rpath=/usr/local/lib/gcc12
+BINDIR = .
 TARGET = $(BINDIR)/vrunner
 
 # ############# libfoxnet libs and includes
@@ -32,9 +32,10 @@ TARGET = $(BINDIR)/vrunner
 # INCDIR += -I../../../extern/amy
 
 ############# source files
-CPP=main.cpp\
-	runner.cpp\
-	utils.cpp\
+CPP = \
+    main.cpp \
+    runner.cpp \
+    utils.cpp
 
 ############################################################################
 OBJDIR = .obj
