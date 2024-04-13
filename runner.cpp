@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 bool runForked(const std::string& fileName) {
     printf_s("Forking this file: %s", fileName.c_str());

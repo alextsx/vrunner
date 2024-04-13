@@ -7,13 +7,14 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <cstring>
+#include <errno.h>
+#include <limits.h>
 
-#ifdef _WIN32
-#include <windows.h>
-#define platformSleep(milliseconds) Sleep(milliseconds)
-#else
-#define platformSleep(milliseconds) sleep(milliseconds / 1000)
-#endif
+
+unsigned int g_dwRunningPID = 0;
 
 std::string resolveSymbolicLink(const char* path) {
     char resolvedPath[PATH_MAX];
@@ -90,7 +91,7 @@ bool interpret_argument(char* arg, std::string& fileName) {
     char* szArgData = szPos + 1;
     *szPos = '\0';
 
-    if (!_stricmp(szArgName, "--file")) {
+    if (!strcasecmp(szArgName, "--file")) {
         fileName = szArgData;
     } else {
         printf_s("Skip argument : %s=%s\n", szArgName, szArgData);
